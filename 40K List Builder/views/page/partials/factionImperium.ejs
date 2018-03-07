@@ -1,0 +1,42 @@
+<select id="factionSelect" onchange="factionSelected()">
+    <option>Please Select Your Faction</option>
+    <% factions.forEach(function(faction) {%>
+        <% if (faction.army === "Imperium") { %>
+            <option value=<%= faction.id %>><%= faction.name %></option>
+        <% } %>
+    <%})%>
+</select>
+
+<script>
+
+    function factionSelected() {
+
+
+        var $subfaction = $('#subfaction');
+
+        var faction = document.getElementById("factionSelect");
+
+        if (faction.value === "adeptusAstartes") {
+            $subfaction.load('/subFactionAdeptusAstartes')
+        } else if (faction.value === "astraMilitarum") {
+            $subfaction.load('/subFactionAstraMilitarum')
+        } else if (faction.value === "adeptusMechanicus") {
+            $subfaction.load('/subFactionAdeptusMechanicus')
+        } else if (faction.value === "questorImperialis") {
+            $subfaction.load('/subFactionQuestorImperialis')
+        } else if (faction.value === "adeptusMinistorum") {
+            $subfaction.load('/subFactionAdeptusMinistorum')
+        } else if (faction.value === "adeptusAstraTelepathica") {
+            $subfaction.load('/subFactionAdeptusAstraTelepathica')
+        } else if (faction.value === "officioAssassinorum") {
+            $subfaction.load('/subFactionOfficioAssassinorum')
+        } else if (faction.value === "theInquisition") {
+            $subfaction.load('/subFactionInquisition')
+        } else if (faction.value === "adeptusCustodes") {
+            $subfaction.load('/subFactionAdeptusCustodes')
+        } else if (faction.value === "fortifications") {
+            $subfaction.load('/subFactionFortifications')
+        }
+    }
+
+</script>

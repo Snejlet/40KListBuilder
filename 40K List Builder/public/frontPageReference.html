@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>40K List Builder</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"><!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<header>40K List Builder of Some Excellence</header>
+
+<div class="row">
+    <div class="col">
+        <div class="col">
+            <select id="factionPicker" onchange="populateArmySelect()">
+                <option>Please Select Your Faction</option>
+                <option value="imperium">Imperium</option>
+                <option value="chaos">Chaos</option>
+                <option value="xenos">Xenos</option>
+            </select>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <select id="armyPicker" onchange="populateUnitSelect()">
+                <option>Please Select Your Army</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-sm-1">
+        <select id="unitList" size="8">
+            <option>Units</option>
+        </select>
+
+        </div>
+
+    <div class="col">
+        <table id="armyList" style="width:80%">
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Number</th>
+                <th>Points</th>
+                <th id="artifacts">Artifacts</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+    <button id="newUnitButton" onclick="newUnit()">Add</button>
+</div>
+
+</div>
+
+
+<script>
+
+    function populateArmySelect() {
+
+        var faction = document.getElementById("factionPicker");
+        var army = document.getElementById("armyPicker");
+
+        console.log(faction.selectedIndex);
+
+        for (var i = army.options.length - 1; i >= 1; i--) {
+            army.remove(i);
+        }
+
+        if (faction.value === "imperium") {
+
+            var spaceMarines = document.createElement("option");
+                spaceMarines.text = "Spezz Mahreens";
+                spaceMarines.value = "spaceMarines";
+            var greyKnights = document.createElement("option");
+                greyKnights.text = "Grey Knights";
+                greyKnights.value = "greyKnights";
+            var adeptusMechanicus = document.createElement("option");
+                adeptusMechanicus.text = "Adeptus Mechanicus";
+                adeptusMechanicus.value = "adeptusMechanicus";
+            var astraMilitarum = document.createElement("option");
+                astraMilitarum.text = "Astra Militarum";
+                astraMilitarum.value = "astraMilitarum";
+            var adeptusCustodes = document.createElement("option");
+                adeptusCustodes.text = "Adeptus Custodes";
+                adeptusCustodes.value = "adeptusCustodes";
+
+            army.add(spaceMarines);
+            army.add(greyKnights);
+            army.add(adeptusMechanicus);
+            army.add(astraMilitarum);
+            army.add(adeptusCustodes);
+        }
+
+        if (faction.value === "chaos") {
+
+            var chaosSpaceMarines = document.createElement("option");
+                chaosSpaceMarines.text = "Chaos Space Marines";
+                chaosSpaceMarines.value = "chaosSpaceMarines";
+            var chaosDemons = document.createElement("option");
+                chaosDemons.text = "Chaos Demons";
+                chaosDemons.value = "chaosDemons";
+
+            army.add(chaosSpaceMarines);
+            army.add(chaosDemons);
+        }
+
+        if (faction.value === "xenos") {
+            var necrons = document.createElement("option");
+                necrons.text = "Necrons";
+                necrons.value = "necrons";
+            var tyranids = document.createElement("option");
+                tyranids.text = "Tyranids";
+                tyranids.value = "tyranids";
+            var tau = document.createElement("option");
+                tau.text = "T'au";
+                tau.value = "tau";
+            var eldar = document.createElement("option");
+                eldar.text = "Eldar";
+                eldar.value = "eldar";
+
+            army.add(necrons);
+            army.add(tyranids);
+            army.add(tau);
+            army.add(eldar);
+        }
+    }
+
+    function populateUnitSelect() {
+
+        var army = document.getElementById("armyPicker");
+        var unit = document.getElementById("unitPicker");
+
+        if (army.value === "spaceMarines") {
+            console.log("Yay!");
+        }
+
+        if (army.value === "tyranids") {
+            console.log("Going to eat your brains to gain your knowledge");
+            tyranidList();
+        }
+
+    }
+
+    function newUnit() {
+
+        var selected = document.getElementById("unitList").value;
+        var selectedName = selected.text;
+
+        console.log(selectedName);
+
+        //creates values to put into the row cells.
+        var name = document.getElementById("unitList").value;
+        var role = "-";
+        var number = '<input type="text" value="1">';
+        var points = "0";
+        var deleteButton = '<input type="button" id="delete" value="Delete" onclick="deleteRow(this)"/>';
+
+        //gets the table by its I.D.
+        var table = document.getElementById("armyList");
+        //inserts a row at the first position after the table header.
+        var row = table.insertRow();
+        //creates a variable for each cell of the newly created row.
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+
+        //popultes the cells with the variables above.
+        cell1.innerHTML = name;
+        cell2.innerHTML = role;
+        cell3.innerHTML = number;
+        cell4.innerHTML = points;
+        cell5.innerHTML = "place holder";
+        cell6.innerHTML = deleteButton;
+    }
+
+    function deleteRow(r) {
+
+        var thisRow = r.parentNode.parentNode.rowIndex;
+
+        document.getElementById("armyList").deleteRow(thisRow);
+
+    }
+
+
+</script>
+
+</body>
+</html>

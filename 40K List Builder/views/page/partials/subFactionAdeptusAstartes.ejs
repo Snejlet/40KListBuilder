@@ -1,0 +1,8 @@
+<select id="subFactionSelect" onchange="subFactionSelected()">
+    <option>Please Select Your Sub Faction</option>
+    <% subfactions.forEach(function(subfaction) {%>
+    <% if (subfaction.faction === "Adeptus Astartes") { %>
+    <option value=<%= subfaction.id %>><%= subfaction.name %></option>
+    <% } %>
+    <%})%>
+</select>

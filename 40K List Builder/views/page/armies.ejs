@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <title>All</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Testing the thing to see if it works</h1>
+
+    <!-- this is commented out. Trying to do it with a select instead.
+    <table>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+        </tr>
+
+        <% armies.forEach(function(army){%>
+        <tr id = "<%= army.id%>" >
+            <td><%= army.id %></td>
+            <td><%= army.name %></td>
+        </tr>
+        <%})%>
+    </table>
+    -->
+
+
+    <select id="army" onchange="armySelected()">
+        <option>Please Select Your Faction</option>
+        <% armies.forEach(function(army) {%>
+            <option value=<%= army.name %>><%= army.name %></option>
+        <%})%>
+    </select>
+
+
+    <!-- the below works. Now find some way of making that useful
+    <select>
+        <% armies.forEach(function(army) {%>
+                <% if(army.name === "Imperium") {%>
+                    <option><%= army.faction %></option>
+                <% } %>
+        <%})%>
+    </select>
+    -->
+
+    <div id="faction">
+    </div>
+
+    <div id="subfaction">
+
+    </div>
+
+    <script>
+
+        function armySelected() {
+
+            // why does army.value work here? I haven't told it what army is. Surely this is the work of an enemy stand?
+             console.log(army.value)
+
+            //Weird. Can't have an EJS file with "TheInquisition" in the name. Just defaults to being a regular file.
+
+            var $faction = $('#faction');
+
+            if (army.value === "Imperium") {
+                 $faction.load('/factionImperium');
+            } else if (army.value === "Chaos") {
+                 $faction.load('/factionChaos');
+            } else if (army.value === "Xenos") {
+                $faction.load('/factionXenos');
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

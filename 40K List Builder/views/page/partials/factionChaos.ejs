@@ -1,0 +1,8 @@
+<select id="faction" onchange="factionSelected()">
+    <option>Please Select Your Faction</option>
+    <% factions.forEach(function(faction) {%>
+    <% if (faction.army === "Chaos") { %>
+    <option value=<%= faction.name %>><%= faction.name %></option>
+    <% } %>
+    <%})%>
+</select>
