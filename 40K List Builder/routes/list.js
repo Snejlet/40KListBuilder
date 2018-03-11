@@ -3,6 +3,7 @@ var router = express.Router();
 var armyDAO = require('../dao/armyDAO');
 var factionDAO = require('../dao/factionDAO');
 var subFactionDAO = require('../dao/subFactionDAO');
+var tyranidDAO = require('../dao/tyranidDAO');
 
 router.get('/', function(req, res) {
     console.log("At the front page");
@@ -212,7 +213,7 @@ router.get("/subFactionTyranids", function(req, res) {
         var subfaction = result;
         res.render("page/partials/subFactionTyranids",
             {subfactions: subfaction})
-    })
+    });
 });
 
 router.get("/subFactionGenestealerCults", function(req, res) {

@@ -11,8 +11,18 @@
 
     function subFactionSelected() {
 
-        document.getElementById("unitList").hidden = false;
+        //Creating this var with both javascript and jquery, because I can't get jquery to interact with the hidden attribute.
+        var unitList = document.getElementById("unitList");
+        unitList.hidden = false;
 
+        var $unitList = $('#unitList');
+        var subFaction = document.getElementById("subFactionSelect");
+
+        /* testing purposes.
+        var option = document.createElement("option");
+        option.text = "Poo"
+        unitList.add(option)
+        */
 
     }
 </script>
