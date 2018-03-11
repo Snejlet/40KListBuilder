@@ -1,8 +1,33 @@
-<select id="faction" onchange="factionSelected()">
+<select id="factionSelect" onchange="factionSelected()">
     <option>Please Select Your Faction</option>
     <% factions.forEach(function(faction) {%>
-    <% if (faction.army === "Xenos") { %>
-    <option value=<%= faction.name %>><%= faction.name %></option>
-    <% } %>
+        <% if (faction.army === "Xenos") { %>
+            <option value=<%= faction.id %>><%= faction.name %></option>
+        <% } %>
     <%})%>
 </select>
+
+<script>
+
+    function factionSelected() {
+
+        var $subfaction = $('#subfaction');
+
+        var faction = document.getElementById("factionSelect");
+
+        if (faction.value === "eldar") {
+            $subfaction.load('/subFactionEldar')
+        } else if (faction.value === "necrons") {
+            $subfaction.load('/subFactionNecrons')
+        } else if (faction.value === "orks") {
+            $subfaction.load('/subFactionOrks')
+        } else if (faction.value === "tau") {
+            $subfaction.load('/subFactionTau')
+        } else if (faction.value === "tyranids") {
+            $subfaction.load('/subFactionTyranids')
+        } else if (faction.value === "genestealerCults") {
+            $subfaction.load('/subFactionGenestealerCults')
+        }
+    }
+
+</script>

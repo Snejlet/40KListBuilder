@@ -1,0 +1,18 @@
+<select id="subFactionSelect" onchange="subFactionSelected()">
+    <option>Please Select Your Sub Faction</option>
+    <% subfactions.forEach(function(subfaction) {%>
+    <% if (subfaction.faction === "Tyranids") { %>
+    <option value=<%= subfaction.id %>><%= subfaction.name %></option>
+    <% } %>
+    <%})%>
+</select>
+
+<script>
+
+    function subFactionSelected() {
+
+        document.getElementById("unitList").hidden = false;
+
+
+    }
+</script>

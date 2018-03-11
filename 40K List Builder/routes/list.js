@@ -143,4 +143,84 @@ router.get("/subFactionFortifications", function(req, res) {
     })
 });
 
+router.get("/subFactionHereticAstartes", function(req, res) {
+    subFactionDAO.getAll(function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFactionHereticAstartes",
+            {subfactions: subfaction})
+    })
+});
+
+router.get("/subFactionDaemons", function(req, res) {
+    subFactionDAO.getAll(function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFactionDaemons",
+            {subfactions: subfaction})
+    })
+});
+
+router.get("/subFactionQuestorTraitoris", function(req, res) {
+    subFactionDAO.getAll(function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFactionQuestorTraitoris",
+            {subfactions: subfaction})
+    })
+});
+
+router.get("/subFactionChaosBastions", function(req, res) {
+    subFactionDAO.getAll(function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFactionChaosBastions",
+            {subfactions: subfaction})
+    })
+});
+
+router.get("/subFactionEldar", function(req, res) {
+    subFactionDAO.getAll(function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFactionEldar",
+        {subfactions: subfaction})
+    })
+});
+
+router.get("/subFactionNecrons", function(req, res) {
+    subFactionDAO.getAll(function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFactionNecrons",
+            {subfactions: subfaction})
+    })
+});
+
+router.get("/subFactionOrks", function(req, res) {
+    subFactionDAO.getAll(function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFactionOrks",
+            {subfactions: subfaction})
+    })
+});
+
+router.get("/subFactionTau", function(req, res) {
+    subFactionDAO.getAll(function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFactionTau",
+            {subfactions: subfaction})
+    })
+});
+
+router.get("/subFactionTyranids", function(req, res) {
+    subFactionDAO.getAll(function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFactionTyranids",
+            {subfactions: subfaction})
+    })
+});
+
+router.get("/subFactionGenestealerCults", function(req, res) {
+    subFactionDAO.getAll(function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFactionGenestealerCults",
+            {subfactions: subfaction})
+    })
+});
+
 module.exports = router;
