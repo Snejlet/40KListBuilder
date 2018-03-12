@@ -224,4 +224,12 @@ router.get("/subFactionGenestealerCults", function(req, res) {
     })
 });
 
+router.get("/armyTyranids", function(req, res) {
+    tyranidDAO.getAll(function (result) {
+        var unit = result;
+        res.render("page/partials/armyTyranids",
+            {units: unit})
+    })
+});
+
 module.exports = router;

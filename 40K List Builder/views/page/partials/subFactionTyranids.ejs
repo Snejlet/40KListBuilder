@@ -7,6 +7,8 @@
     <%})%>
 </select>
 
+
+
 <script>
 
     function subFactionSelected() {
@@ -18,11 +20,8 @@
         var $unitList = $('#unitList');
         var subFaction = document.getElementById("subFactionSelect");
 
-        /* testing purposes.
-        var option = document.createElement("option");
-        option.text = "Poo"
-        unitList.add(option)
-        */
-
+        if (subFaction.value = "tyranids") {
+            $unitList.load('/armyTyranids');
+        }
     }
 </script>

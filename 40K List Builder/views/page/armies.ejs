@@ -54,8 +54,18 @@
     <div id="subfaction">
     </div>
 
-    <select id="unitList" size="20" hidden>
+    <select id="unitList" hidden>
     </select>
+
+    <button id="buttonTest" onclick="unitSelected()">Test</button>
+
+    <table id="armyList">
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Points</th>
+        </tr>
+    </table>
 
     <script>
 
@@ -75,6 +85,13 @@
             } else if (army.value === "Xenos") {
                 $faction.load('/factionXenos');
             }
+        }
+
+        function unitSelected() {
+
+            var unit = document.getElementById("unitList").innerHTML;
+
+            console.log(unit);
         }
 
     </script>
