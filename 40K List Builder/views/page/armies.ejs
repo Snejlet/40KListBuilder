@@ -31,7 +31,7 @@
 
 
     <select id="army" onchange="armySelected()">
-        <option>Please Select Your Faction</option>
+        <option>Please Select Your Army</option>
         <% armies.forEach(function(army) {%>
             <option value=<%= army.name %>><%= army.name %></option>
         <%})%>
@@ -51,13 +51,11 @@
     <div id="faction">
     </div>
 
-    <div id="subfaction">
+    <div id="subFaction">
     </div>
 
-    <div id="unitList" hidden>
+    <div id="unitList">
     </div>
-
-    <button id="buttonTest" onclick="unitSelected()">Test</button>
 
     <table id="armyList">
         <tr>
@@ -72,12 +70,18 @@
         function armySelected() {
 
             // why does army.value work here? I haven't told it what army is. Surely this is the work of an enemy stand?
-             console.log(army.value)
+             //console.log(army.value)
 
             //Weird. Can't have an EJS file with "TheInquisition" in the name. Just defaults to being a regular file.
 
             var $faction = $('#faction');
 
+            var army = document.getElementById("army");
+            console.log(army.value);
+
+            $faction.load('/faction/'+army.value);
+
+            /*
             if (army.value === "Imperium") {
                  $faction.load('/factionImperium');
             } else if (army.value === "Chaos") {
@@ -85,6 +89,7 @@
             } else if (army.value === "Xenos") {
                 $faction.load('/factionXenos');
             }
+            */
         }
 
         function unitSelected() {

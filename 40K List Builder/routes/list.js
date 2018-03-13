@@ -3,7 +3,7 @@ var router = express.Router();
 var armyDAO = require('../dao/armyDAO');
 var factionDAO = require('../dao/factionDAO');
 var subFactionDAO = require('../dao/subFactionDAO');
-var tyranidDAO = require('../dao/tyranidDAO');
+var unitDAO = require('../dao/unitDAO');
 
 router.get('/', function(req, res) {
     console.log("At the front page");
@@ -224,6 +224,15 @@ router.get("/subFactionGenestealerCults", function(req, res) {
     })
 });
 
+router.get("/faction/:army", function(req, res) {
+    var army = req.param("army");
+    factionDAO.getAllByArmy(army, function(result) {
+        var faction = result;
+        res.render("page/partials/faction",
+            {factions: faction})
+    })
+});
+
 router.get("/subFaction/:faction", function(req, res) {
     var faction = req.param("faction");
     subFactionDAO.getAllByFaction(faction,function (result) {
@@ -233,11 +242,11 @@ router.get("/subFaction/:faction", function(req, res) {
     });
 });
 
-router.get("/units/:subfaction", function(req, res) {
+router.get("/unit/:subFaction", function(req, res) {
     var subFaction = req.param("subFaction");
-    tyranidDAO.getAllBySubFaction(subFaction,function (result) {
+    unitDAO.getAllBySubFaction(subFaction,function (result) {
         var unit = result;
-        res.render("page/partials/units",
+        res.render("page/partials/unit",
             {units: unit})
     })
 });

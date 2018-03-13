@@ -15,6 +15,7 @@
 
         var $unitList = $('#unitList');
         var subFaction = document.getElementById("subFactionSelect");
-        $unitList.load('/units/'+ subFaction.value);
+        console.log(subFaction.value);
+        $unitList.load('/unit/'+ subFaction.value);
         }
 </script>

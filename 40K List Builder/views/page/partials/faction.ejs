@@ -1,0 +1,20 @@
+<select id="factionSelect" onchange="factionSelected()">
+    <option>Please Select a Faction</option>
+    <% factions.forEach(function(faction) {%>
+    <option value="<%= faction.id %>"><%= faction.name %></option>
+    <%})%>
+</select>
+
+<script>
+
+    function factionSelected() {
+
+        var faction = document.getElementById("factionSelect");
+        var $subFaction = $('#subFaction')
+
+        console.log(faction.value);
+        $subFaction.load('/subFaction/'+faction.value);
+
+
+    }
+</script>
