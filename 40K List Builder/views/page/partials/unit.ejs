@@ -1,4 +1,4 @@
-<select id="unitList">
+<select id="unitListSelect" onchange="unitSelected()">
     <option>Please Select A Unit</option>
     <% units.forEach(function(unit) {%>
     <option value="<%= unit.id %>"><%= unit.name + " (" + unit.points + ")" %></option>
@@ -6,5 +6,15 @@
 </select>
 
 <script>
+
+    function unitSelected() {
+        var $unitList = $('#unitList');
+
+        var unit = document.getElementById("unitListSelect");
+
+        console.log(unit);
+
+
+    }
 
 </script>
