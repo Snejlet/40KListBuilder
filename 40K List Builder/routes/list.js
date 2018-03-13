@@ -224,10 +224,20 @@ router.get("/subFactionGenestealerCults", function(req, res) {
     })
 });
 
-router.get("/armyTyranids", function(req, res) {
-    tyranidDAO.getAll(function (result) {
+router.get("/subFaction/:faction", function(req, res) {
+    var faction = req.param("faction");
+    subFactionDAO.getAllByFaction(faction,function (result) {
+        var subfaction = result;
+        res.render("page/partials/subFaction",
+            {subfactions: subfaction})
+    });
+});
+
+router.get("/units/:subfaction", function(req, res) {
+    var subFaction = req.param("subFaction");
+    tyranidDAO.getAllBySubFaction(subFaction,function (result) {
         var unit = result;
-        res.render("page/partials/armyTyranids",
+        res.render("page/partials/units",
             {units: unit})
     })
 });

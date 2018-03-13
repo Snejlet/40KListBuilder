@@ -1,9 +1,7 @@
 <select id="subFactionSelect" onchange="subFactionSelected()">
     <option>Please Select Your Sub Faction</option>
     <% subfactions.forEach(function(subfaction) {%>
-    <% if (subfaction.faction === "Tyranids") { %>
-    <option value=<%= subfaction.id %>><%= subfaction.name %></option>
-    <% } %>
+    <option value="<%= subfaction.id %>"><%= subfaction.name %></option>
     <%})%>
 </select>
 
@@ -14,14 +12,9 @@
     function subFactionSelected() {
 
         //Creating this var with both javascript and jquery, because I can't get jquery to interact with the hidden attribute.
-        var unitList = document.getElementById("unitList");
-        unitList.hidden = false;
 
         var $unitList = $('#unitList');
         var subFaction = document.getElementById("subFactionSelect");
-
-        if (subFaction.value = "tyranids") {
-            $unitList.load('/units/Tyranids');
+        $unitList.load('/units/'+ subFaction.value);
         }
-    }
 </script>

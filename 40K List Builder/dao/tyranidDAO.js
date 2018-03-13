@@ -5,6 +5,10 @@ var tyranidDAO = {
     getAll:function(callback) {
         var sql = "select * from "+this.tableName+";";
         daoHelper.callSql(sql, [], "getAll", callback);
+    },
+    getAllBySubFaction:function(subFaction,callback) {
+        var sql = "select * from "+this.tableName+" where subfaction = ?;";
+        daoHelper.callSql(sql, [subFaction], "getAllBySubFaction", callback);
     }
 };
 
