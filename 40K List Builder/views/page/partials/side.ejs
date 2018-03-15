@@ -1,0 +1,19 @@
+<select id="sideSelect" onchange="sideSelected()">
+    <option>Please Select a Side</option>
+    <% sides.forEach(function(side) {%>
+    <option value="<%= side.id %>"><%= side.name %></option>
+    <%})%>
+</select>
+
+<script>
+
+    function sideSelected() {
+
+        var side = document.getElementById("sideSelect");
+        var $faction = $('#faction')
+
+        console.log(side.value);
+        $faction.load('/faction/'+side.value);
+
+    }
+</script>

@@ -1,19 +1,20 @@
-<select id="unitListSelect" onchange="unitSelected()">
+<select id="unitSelect">
     <option>Please Select A Unit</option>
-    <% units.forEach(function(unit) {%>
-    <option value="<%= unit.id %>"><%= unit.name + " (" + unit.points + ")" %></option>
+        <% units.forEach(function(unit) {%>
+            <option value="<%= unit.id %>"><%= unit.name + " (" + unit.points + ")" %></option>
     <% }) %>
 </select>
+<button id="commit" onclick="unitSelected()">Add</button>
 
 <script>
 
     function unitSelected() {
-        var $unitList = $('#unitList');
 
-        var unit = document.getElementById("unitListSelect");
-
-        console.log(unit);
-
+        var list = document.getElementById("list").value;
+        var side = document.getElementById("sideSelect").value;
+        var faction = document.getElementById("factionSelect").value;
+        var unit = document.getElementById("unitSelect").value;
+        console.log(list+" "+side+" "+faction+" "+unit);
 
     }
 

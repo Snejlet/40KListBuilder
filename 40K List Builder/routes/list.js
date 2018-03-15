@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var armyDAO = require('../dao/armyDAO');
+var sideDAO = require('../dao/sideDAO');
 var factionDAO = require('../dao/factionDAO');
 var subFactionDAO = require('../dao/subFactionDAO');
 var unitDAO = require('../dao/unitDAO');
+var listDAO = require('../dao/listDAO');
 
 router.get('/', function(req, res) {
     console.log("At the front page");
@@ -20,6 +21,30 @@ router.get('/oldFrontPage', function(req, res) {
     res.redirect("/frontPageReference.html");
 });
 
+router.get("/createNewList", function (req, res) {
+    console.log("At the list creating page");
+    res.redirect("/createNew.html");
+});
+
+router.post("/createdNewList", function (req, res) {
+    console.log(req.body);
+    var listname = req.body;
+   listDAO.insertIntoLists(listname, function(result) {
+       var list = result;
+       console.log(list);
+       res.redirect("/frontPage.html")
+   })
+});
+
+router.post("/newUnitAdded", function (req, res) {
+   console.log(req.body);
+   var name = req.body;
+   listDAO.insertIntoLists(name, function(result) {
+
+   })
+});
+
+
 /* outdated by the one below
 router.get('/books', function(req, res) {
     bookDAO.getAll(function (result) {
@@ -29,17 +54,27 @@ router.get('/books', function(req, res) {
 });
 */
 
-router.get("/armies", function(req, res) {
-    armyDAO.getAll(function (result) {
-        var army = result;
+router.get("/armies", function (req, res) {
+    console.log(req.body);
+    listDAO.getAll(function (result) {
+        var lists = result;
         res.render("page/armies",
-            {armies: army})
+            {lists: lists})
     })
 });
 
-router.get("/faction/:army", function(req, res) {
-    var army = req.param("army");
-    factionDAO.getAllByArmy(army, function(result) {
+router.get("/side", function(req, res) {
+    console.log(req.body);
+    sideDAO.getAll(function (result) {
+        var side = result;
+        res.render("page/partials/side",
+            {sides: side})
+    })
+});
+
+router.get("/faction/:side", function(req, res) {
+    var side = req.param("side");
+    factionDAO.getAllByArmy(side, function(result) {
         var faction = result;
         res.render("page/partials/faction",
             {factions: faction})
@@ -61,6 +96,16 @@ router.get("/unit/:subFaction", function(req, res) {
         var unit = result;
         res.render("page/partials/unit",
             {units: unit})
+    })
+});
+
+router.get("/added/:id", function(req, res) {
+    var id = req.param("id");
+    unitDAO.getUnitById(id, function (result) {
+        var unit = result;
+        res.render("page/partials/tableElement",
+            {units: unit});
+        console.log(unit);
     })
 });
 

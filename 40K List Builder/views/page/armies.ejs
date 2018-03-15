@@ -1,10 +1,9 @@
 <html xmlns:visibility="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>All</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"><!-- Latest compiled and minified CSS -->
+    <% include ./partials/head %>
+
 </head>
 
 <body>
@@ -13,40 +12,24 @@
 
     <div>Spoilers: Only the Tyranids have anything in them right now. So probably use those.</div>
 
-    <!-- this is commented out. Trying to do it with a select instead.
-    <table>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-        </tr>
-
-        <% armies.forEach(function(army){%>
-        <tr id = "<%= army.id%>" >
-            <td><%= army.id %></td>
-            <td><%= army.name %></td>
-        </tr>
-        <%})%>
-    </table>
+    <!--
+    <select id="userList">
+        <%# lists.forEach(function(list) {%>
+            <option><%# list.listname %></option>
+        <%# }) %>
+    </select>
     -->
 
-
-    <select id="army" onchange="armySelected()">
-        <option>Please Select Your Army</option>
-        <% armies.forEach(function(army) {%>
-            <option value=<%= army.name %>><%= army.name %></option>
+    <div>Please select the list you would like to edit: </div>
+    <select id="list" onchange="listSelected()">
+        <option>Select</option>
+        <% lists.forEach(function(lists) {%>
+            <option value="<%= lists.listname %>"><%= lists.listname %></option>
         <%})%>
     </select>
 
-
-    <!-- the below works. Now find some way of making that useful
-    <select>
-        <% armies.forEach(function(army) {%>
-                <% if(army.name === "Imperium") {%>
-                    <option><%= army.faction %></option>
-                <% } %>
-        <%})%>
-    </select>
-    -->
+    <div id="side">
+    </div>
 
     <div id="faction">
     </div>
@@ -57,29 +40,24 @@
     <div id="unitList">
     </div>
 
-    <div id="armyList">
-        <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Points</th>
-        </tr>
-    </div>
+    <div id="armyList"></div>
 
     <script>
 
-        function armySelected() {
+        function listSelected() {
 
             // why does army.value work here? I haven't told it what army is. Surely this is the work of an enemy stand?
              //console.log(army.value)
 
             //Weird. Can't have an EJS file with "TheInquisition" in the name. Just defaults to being a regular file.
+            var list = document.getElementById("list");
+            console.log(list.value);
+            var $side = $('#side');
 
-            var $faction = $('#faction');
+            //var army = document.getElementById("army");
+           // console.log(army.value);
 
-            var army = document.getElementById("army");
-            console.log(army.value);
-
-            $faction.load('/faction/'+army.value);
+            $side.load('/side');
 
             /*
             if (army.value === "Imperium") {
@@ -90,13 +68,6 @@
                 $faction.load('/factionXenos');
             }
             */
-        }
-
-        function unitSelected() {
-
-            var unit = document.getElementById("unitList").innerHTML;
-
-            console.log(unit);
         }
 
     </script>

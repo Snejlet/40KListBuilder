@@ -1,0 +1,14 @@
+<table id="armyList">
+    <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Points</th>
+    </tr>
+    <% units.forEach(function(unit) {%>
+    <tr id = "<%= unit.id %>" >
+        <td><%= unit.name %></td>
+        <td><%= unit.role %></td>
+        <td><%= unit.points %></td>
+    </tr>
+    <% }) %>
+</table>

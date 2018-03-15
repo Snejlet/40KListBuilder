@@ -6,9 +6,9 @@ var factionDAO = {
         var sql = "select * from "+this.tableName+";";
         daoHelper.callSql(sql, [], "getAll", callback);
     },
-    getAllByArmy:function(army, callback) {
-        var sql = "select * from "+this.tableName+" where army = ?;";
-        daoHelper.callSql(sql, [army], "getAllByArmy", callback);
+    getAllByArmy:function(side, callback) {
+        var sql = "select * from "+this.tableName+" where side = ?;";
+        daoHelper.callSql(sql, [side], "getAllByArmy", callback);
     }
 };
 
