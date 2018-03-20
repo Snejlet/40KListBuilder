@@ -16,6 +16,20 @@
         var unit = document.getElementById("unitSelect").value;
         console.log(list+" "+side+" "+faction+" "+unit);
 
+        $.ajax({
+            url:'/listUnit/create',
+            method:'POST',
+            data:{listid:list,unitid:unit},
+            datatype:'HTML',
+            success:function(result){
+
+            },
+            error:function(err){
+                console.log('error:'+JSON.stringify(err));
+            }
+
+        })
+
     }
 
 </script>
