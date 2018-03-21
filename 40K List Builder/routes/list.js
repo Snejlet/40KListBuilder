@@ -5,6 +5,7 @@ var factionDAO = require('../dao/factionDAO');
 var subFactionDAO = require('../dao/subFactionDAO');
 var unitDAO = require('../dao/unitDAO');
 var listDAO = require('../dao/listDAO');
+var unitListDAO = require('../dao/unitListDAO');
 
 router.get('/', function(req, res) {
     console.log("At the front page");
@@ -36,6 +37,7 @@ router.post("/createdNewList", function (req, res) {
    })
 });
 
+/*
 router.post("/newUnitAdded", function (req, res) {
    console.log(req.body);
    var name = req.body;
@@ -43,6 +45,24 @@ router.post("/newUnitAdded", function (req, res) {
 
    })
 });
+*/
+
+router.post("/listUnit/create", function (req, res) {
+    console.log(req.body);
+    var id = req.body;
+    unitListDAO.newUnitAdded(id, function(result) {
+        var unitList = result;
+       doGetAllPartial(req,res);
+    })
+});
+function doGetAllPartial(req, res){
+    unitListDAO.getAll(function (result) {
+        res.render("page/partials/tableElement",
+            {unitLists: result})
+    })
+}
+
+router.get("/getAllPartial", doGetAllPartial);
 
 
 /* outdated by the one below

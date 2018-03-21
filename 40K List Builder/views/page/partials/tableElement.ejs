@@ -4,11 +4,10 @@
         <th>Role</th>
         <th>Points</th>
     </tr>
-    <% units.forEach(function(unit) {%>
-    <tr id = "<%= unit.id %>" >
-        <td><%= unit.name %></td>
-        <td><%= unit.role %></td>
-        <td><%= unit.points %></td>
+    <% unitLists.forEach(function(unitList) {%>
+    <tr id = "<%= unitList.id %>" >
+        <td><%= unitList.unitid %></td>
+        <td><%= unitList.listid %></td>
     </tr>
     <% }) %>
 </table>

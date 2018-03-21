@@ -14,7 +14,7 @@
         var side = document.getElementById("sideSelect").value;
         var faction = document.getElementById("factionSelect").value;
         var unit = document.getElementById("unitSelect").value;
-        console.log(list+" "+side+" "+faction+" "+unit);
+        //console.log(list+" "+side+" "+faction+" "+unit);
 
         $.ajax({
             url:'/listUnit/create',
@@ -22,7 +22,7 @@
             data:{listid:list,unitid:unit},
             datatype:'HTML',
             success:function(result){
-
+                $('#armyList').html(result);
             },
             error:function(err){
                 console.log('error:'+JSON.stringify(err));
