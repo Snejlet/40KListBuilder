@@ -27,6 +27,11 @@ router.get("/createNewList", function (req, res) {
     res.redirect("/createNew.html");
 });
 
+router.get("/adminPage", function (req, res) {
+    console.log("At the admin page");
+    res.redirect("/adminPage.html");
+});
+
 router.post("/createdNewList", function (req, res) {
     console.log(req.body);
     var listname = req.body;
@@ -127,6 +132,10 @@ router.get("/added/:id", function(req, res) {
             {units: unit});
         console.log(unit);
     })
+});
+
+router.get("/adminDatabase", function (req, res) {
+   res.render("page/partials/adminDatabase")
 });
 
 module.exports = router;
